@@ -1,4 +1,4 @@
-package com.example.WebMeetingPlanner.controller;
+package com.example.WebMeetingPlanner.SmsService;
 
 public interface SmsSender {
 

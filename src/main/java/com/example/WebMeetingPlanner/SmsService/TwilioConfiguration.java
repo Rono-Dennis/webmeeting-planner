@@ -1,4 +1,4 @@
-package com.example.WebMeetingPlanner.controller;
+package com.example.WebMeetingPlanner.SmsService;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

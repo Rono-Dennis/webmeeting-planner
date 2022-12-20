@@ -1,4 +1,4 @@
-package com.example.WebMeetingPlanner.controller;
+package com.example.WebMeetingPlanner.SmsService;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("twilio")
-public class TwilioSmsSender implements SmsSender{
+public class TwilioSmsSender implements SmsSender {
 
 private static final Logger LOGGER = LoggerFactory.getLogger(TwilioSmsSender.class);
-    private final  TwilioConfiguration twilioConfiguration;
+    private final TwilioConfiguration twilioConfiguration;
 
     @Autowired
     public TwilioSmsSender(TwilioConfiguration twilioConfiguration) {

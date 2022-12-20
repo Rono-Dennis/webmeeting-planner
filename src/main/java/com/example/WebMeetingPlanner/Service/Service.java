@@ -1,8 +1,8 @@
 package com.example.WebMeetingPlanner.Service;
 
-import com.example.WebMeetingPlanner.controller.SmsRequest;
-import com.example.WebMeetingPlanner.controller.SmsSender;
-import com.example.WebMeetingPlanner.controller.TwilioSmsSender;
+import com.example.WebMeetingPlanner.SmsService.SmsRequest;
+import com.example.WebMeetingPlanner.SmsService.SmsSender;
+import com.example.WebMeetingPlanner.SmsService.TwilioSmsSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.example.WebMeetingPlanner;
 
-import com.example.WebMeetingPlanner.controller.SmsRequest;
-import com.example.WebMeetingPlanner.controller.TwilioConfiguration;
+import com.example.WebMeetingPlanner.SmsService.SmsRequest;
+import com.example.WebMeetingPlanner.SmsService.TwilioConfiguration;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.rest.api.v2010.account.MessageCreator;
