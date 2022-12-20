@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://use.fontawesome.com/c0c323679c.js"></script>
+
+    <link rel="stylesheet" href="../static/css/stylee.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!--    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <!--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">-->
+
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>-->
+
+
+    <!--    <link rel="style" href="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js">-->
+
+    <!--DataTables Offline-->
+    <link rel="stylesheet" href="../static/css/extern/dataTables.bootstrap5.min.css">
+    <link  th:href="@{/css/extern/dataTables.bootstrap5.min.css}" th:rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container-fluid p-5 hidden" style="margin: 0; padding: 0; width: 90vw; min-height: 10vh;  background: #ce7430;/*EFDECD*/
+/*ce7430*/  top: 20%; left: 20%; right: 20%; text-align: center; font-family: Arial; box-sizing: border-box;">
+    <div class="container-fluid p-5" style="background:#EFDECD;">
+        <h1 class="display-4 mb-4">View upcoming meeting</h1>
+        <div class="card-deck mx-3">
+
+
+            <!--            meeting table here-->
+            <div sec:authorize="isAuthenticated()" class="table-responsive">
+                <table class="table table-striped table-bordered" id="users_list">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>meeting_id</th>
+                        <th>Organisation</th>
+                        <th>capacity</th>
+                        <th>topic</th>
+                        <th>description</th>
+                        <th>resources</th>
+                        <th>eventPattern</th>
+                        <th>startDate</th>
+                        <th>startTime</th>
+                        <th>endTime</th>
+
+                    </tr>
+                    <tbody>
+
+                    <tr th:each="meetingschedules:${schedules}">
+
+                        <td th:text="${meetingschedules.meeting_id}">meeting_id</td>
+                        <td th:text="${meetingschedules.organization.organisation_id}">Organisation</td>
+                        <td th:text="${meetingschedules.capacity}">capacity</td>
+                        <td th:text="${meetingschedules.topic}">topic</td>
+                        <td th:text="${meetingschedules.description}">description</td>
+                        <td th:text="${meetingschedules.resources}">resources</td>
+                        <td th:text="${meetingschedules.eventPattern}">eventPattern</td>
+                        <td th:text="${meetingschedules.startDate}">startDate</td>
+                        <td th:text="${meetingschedules.startTime}">startTime</td>
+                        <td th:text="${meetingschedules.endTime}">endTime</td>
+
+
+                    </tr>
+                    </tbody>
+                    </thead>
+                </table>
+            </div>
+            <!--            meeting table ends here-->
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="../static/js/extern/jquery.dataTables.min.js"></script>
+<script th:src="@{/js/extern/jquery.dataTables.min.js}"></script>
+<script src="../static/js/extern/dataTables.bootstrap5.min.js"></script>
+<script th:src="@{/js/extern/dataTables.bootstrap5.min.js}"></script>
+<script>
+    $(document).ready(function() {
+        $('#users_list').DataTable();
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</body>
+</html>

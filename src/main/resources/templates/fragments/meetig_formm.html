@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <nav th:replace="fragments/header :: nav"></nav>
+
+
+
+<script>
+        $(function() {
+            $('#datetimepicker1').datetimepicker();
+        });
+        $(function() {
+            $('#datetimepicker2').datetimepicker();
+        });
+
+        $(function() {
+            $('#datetimepicker3').datetimepicker();
+        });
+        $(function() {
+            $('#datetimepicker4').datetimepicker();
+        });
+    </script>
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <style>
+        /*.container {*/
+        /*    !*margin-top: 0px;*!*/
+        /*    !*margin-left: 190px;*!*/
+        /*    !*width: 80%;*!*/
+        /*    !*margin-bottom: 40px;*!*/
+
+        /*    !*display: inline-block;*!*/
+        /*    !*margin-left: auto;*!*/
+        /*    !*margin-right: auto;*!*/
+        /*    !*text-align: left;*!*/
+        /*}*/
+
+        /*.container {*/
+        /*    margin-top: 5px;*/
+        /*    margin-left: 10px;*/
+        /*    width: 600px;*/
+        /*}*/
+        .register{
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+            margin-top: 3%;
+            padding: 3%;
+        }
+        .register-left{
+            text-align: center;
+            color: #fff;
+            margin-top: 4%;
+        }
+        .register-left input{
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+        .register-right{
+            background: #f8f9fa;
+            border-top-left-radius: 10% 50%;
+            border-bottom-left-radius: 10% 50%;
+        }
+        .register-left img{
+            margin-top: 15%;
+            margin-bottom: 5%;
+            width: 25%;
+            -webkit-animation: mover 2s infinite  alternate;
+            animation: mover 1s infinite  alternate;
+        }
+        @-webkit-keyframes mover {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        @keyframes mover {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        .register-left p{
+            font-weight: lighter;
+            padding: 12%;
+            margin-top: -9%;
+        }
+        .register .register-form{
+            padding: 10%;
+            margin-top: 10%;
+        }
+        .btnRegister{
+            float: right;
+            margin-top: 10%;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            background: #0062cc;
+            color: #fff;
+            font-weight: 600;
+            width: 50%;
+            cursor: pointer;
+        }
+        .register .nav-tabs{
+            margin-top: 3%;
+            border: none;
+            background: #0062cc;
+            border-radius: 1.5rem;
+            width: 28%;
+            float: right;
+        }
+        .register .nav-tabs .nav-link{
+            padding: 2%;
+            height: 34px;
+            font-weight: 600;
+            color: #fff;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+        .register .nav-tabs .nav-link:hover{
+            border: none;
+        }
+        .register .nav-tabs .nav-link.active{
+            width: 100px;
+            color: #0062cc;
+            border: 2px solid #0062cc;
+            border-top-left-radius: 1.5rem;
+            border-bottom-left-radius: 1.5rem;
+        }
+        .register-heading{
+            text-align: center;
+            margin-top: 8%;
+            margin-bottom: -15%;
+            color: #495057;
+        }
+
+        .error {
+            color: #dc3545
+        }
+        .hidden{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+
+
+
+        /*popup styling*/
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+        }
+        /*  end of popup styling*/
+    </style>
+</head>
+
+<body>
+
+
+        <!---sidebar starts here-->
+
+<!--        <div th:replace="fragments/adminSidebar :: div"></div>-->
+        <div th:replace="fragments/Sidebar :: div"></div>
+        <!--        sidebar ends here-->
+
+
+<div th:replace="fragments/toggle :: div"></div>
+
+            <!--            edition starts here-->
+            <div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        <p>You can add meeting to be held ahead!</p>
+                        <input type="submit" name="" value="Login"/><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
+                            </li>
+
+                        </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row register-form">
+
+                            <form th:action="@{/interval}" method="post" th:object="${dates}" style="display: block;">
+                               <div class="col-md-6">
+
+<!--                                   <div class="form-group">-->
+<!--                                       <label>Organisation:</label>-->
+<!--                                       <select th:field="*{organization}" class="form-control" required>-->
+
+<!--                                           <th:block th:each="organisation: ${listorganisation}">-->
+<!--                                               <option th:text="${organisation.Organisation}" th:value="${organisation.Organisation_id}"></option>-->
+<!--                                           </th:block>-->
+<!--                                       </select> </div>-->
+
+
+                                   <div class="form-group">
+                                       <label>Rooms:</label>
+                                       <select th:field="*{tracomRooms}" class="form-control" required>
+
+                                           <th:block th:each="room: ${listsrooms}">
+                                               <option th:text="${room.Rooms}" th:value="${room.room_id}"></option>
+                                           </th:block>
+                                       </select> </div>
+
+
+                                <div class="form-group">
+                                    <label>Topic:</label>
+                                    <input type="text" class="form-control" placeholder="Enter Topic" th:field="*{topic}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Capacity:</label>
+                                    <input type="number" class="form-control" th:field="*{capacity}" placeholder="Enter Capacity" name="capacity">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Description:</label>
+                                    <input type="text" class="form-control" th:field="*{description}" placeholder="Enter Description" name="capacity">
+                                </div>
+
+                                   <div class="form-group">
+                                       <label>Resources:</label>
+                                       <textarea name="resource" th:field="*{resources}" multiple="multiple" rows="4" cols="40"></textarea>
+                                   </div>
+                               </div>
+
+
+                                <div class="col-md-6">
+
+
+
+                                <div class="form-group">
+                                        <label>StartTime:</label>
+                                        <input type = 'text' class = "form-control"  th:field="*{startDate}" th:errorclass="is-invalid" placeholder="Enter StartTime" id = 'datetimepicker2' />
+                                    <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></span>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label>EndTime:</label>
+                                    <input type = 'text' class = "form-control" th:field="*{endDate}" th:errorclass="is-invalid" placeholder="Enter EndTime" id = 'datetimepicker1' />
+                                    <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="error"></span>
+                                </div>
+
+                                    <div class=" form-group form-check-inline ">
+                                        <label class="col-form-label col-4 m-2">EventPattern:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" value="Once" class="form-check-input m-2" name="eventPattern" id="Once" th:field="*{eventPattern}"/>Once
+                                        <input type="radio" value="Repetitive" class="form-check-input m-2" name="eventPattern" id="Twice" th:field="*{eventPattern}"/>Twice
+<!--                                        <input type="radio" value="More" class="form-check-input m-2" name="eventPattern" id="more" th:field="*{eventPattern}"/>More-->
+                                    </div>
+
+                                <div class="hidden" id="pDetails">
+                                <div id="more" class="form-group">
+                                        <label>StartTime:</label>
+                                        <input type = 'text' class = "form-control"  th:field="*{startDatee}" th:errorclass="is-invalid" placeholder="Enter StartTime" id = 'datetimepicker3'  />
+                                        <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>EndTime:</label>
+                                        <input type = 'text' class = "form-control" th:field="*{endDatee}" th:errorclass="is-invalid" placeholder="Enter EndTime" id = 'datetimepicker4' />
+                                        <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="error"></span>
+                                    </div>
+                                </div>
+
+                                    <div th:if="${#fields.hasErrors('global')}" th:errors="*{global}" class="error"></div>
+
+<!--                                    <div class="form-group">-->
+
+<!--                                </div>-->
+                                    <div class="form-group m-3">
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                        </div>
+
+                                </div>
+
+
+                             </form>
+</div>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<!--            edition ends here-->
+
+
+
+<!--            card starts here-->
+                        <div style="display: flex;" th:replace="fragments/foot :: div"></div>
+<!--card ends here-->
+
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+        <script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // $(document).ready(function(){
+    //     $("#Twice").click(function(){
+    //         $("#more").show();
+    //     });
+    // });
+
+
+    $('#Twice').on('click', function () {
+                $('#pDetails').removeClass("hidden");
+                $('#pDetails').addClass("show");
+    });
+
+    $('#Once').on('click', function () {
+        $('#pDetails').removeClass("show");
+        $('#pDetails').addClass("hidden");
+    });
+
+    // $('.form-group form-check-inline m-2').change(function(){
+    //     var responseID = $(this).val();
+    //     if(responseID =="Once"){
+    //         $('#pDetails').removeClass("hidden");
+    //         $('#pDetails').addClass("show");
+    //     } else{
+    //         $('#pDetails').removeClass("show");
+    //         $('#pDetails').addClass("hidden");
+    //     }
+    //     console.log(responseID);
+    // });
+</script>
+
+ </body>
+</html>
+

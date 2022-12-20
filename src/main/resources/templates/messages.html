@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<nav th:replace="fragments/header :: nav">
+</nav>
+
+
+
+
+<div class="top">
+    <div class="d-flex" id="wrapper" style="background-color: #baf3d7">
+
+        <div class="bg-white"  style="background-color: #baf3d7; margin-top:3%">
+            <div class="collapse show" id="navbarSupportedContent" style="margin-left: 0;">
+                <!--		<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+<!--                sidebar starts here-->
+                <div th:replace="fragments/adminSidebar :: div"></div>
+                <div th:replace="fragments/Sidebar :: div"></div>
+        <!--sidebar ends here-->
+
+        <div class="text-center">
+            <h2>[[${title}]]</h2>
+            <h4>[[${message}]]</h4>
+        </div>
+
+<!--///////////////////////////////// content starts here-->
+
+            <div>
+                <h2>set Your Password</h2>
+            </div>
+
+            <form th:action="@{/reset_passwords}" method="post" style="max-width: 350px; margin: 0 auto;">
+                <input type="hidden" name="token" th:value="${token}" />
+                <div class="border border-secondary rounded p-3">
+                    <div>
+                        <p>
+                            <input type="password" name="password" id="password" class="form-control"
+                                   placeholder="Enter your new password" required autofocus />
+                        </p>
+                        <p>
+                            <input type="password" class="form-control" placeholder="Confirm your new password"
+                                   required oninput="checkPasswordMatch(this);" />
+                        </p>
+                        <p class="text-center">
+                            <input type="submit" value="Change Password" class="btn btn-primary" />
+                        </p>
+                    </div>
+                </div>
+            </form>
+
+
+<!--            ?///////////// ends here-->
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</div>
+</body>
+</html>

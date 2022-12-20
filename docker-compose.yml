@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=stude
+    ports:
+      -  3307:3306
+    volumes:
+      - db:/var/lib/mysql
+  #    networks:
+  #      - spring-net
+
+  spring-docker:
+    image: spring-boot-docker:latest
+    depends_on:
+      - mysqldb
+    restart: on-failure
+    ports:
+      - 9090:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/stude?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+#      SPRING_APPLICATION_JSON: '{
+#              "spring.datasource.url"  : "jdbc:mysql://mysqldb:3307/stude?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false",
+#              "spring.datasource.username" : "root",
+#              "spring.datasource.password" : "root",
+#              "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
+#              "spring.jpa.hibernate.ddl-auto" : "update",
+#              "spring.jpa.show-sql" : true
+#            }'
+#    networks:
+#      - spring-net
+
+volumes:
+  db:
+
+#networks:
+#  spring-net:

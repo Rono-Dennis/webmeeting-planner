@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:fragment="div" sec:authorize="isAuthenticated()"  class="bg-white" style="margin-top: -20px; background-color: #baf3d7;">
+    <div class="collapse show" id="navbarSupportedContent" style="margin-left: 0;">
+        <!--		<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+            <i class="fas fa-user-secret me-2"></i>MeetingPlanner
+        </div>
+
+        <div  class="list-group list-group-flush my-3">
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active">
+                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+            </a>
+            <a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/Scheduling}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> Add Meeting
+            </a>
+            <a th:href="@{/SaveMeeting}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> View Meetings
+            </a>
+            <a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/Addroom}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> Add Rooms
+            </a>
+
+            <a th:href="@{/Saveroom}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> View saved rooms
+            </a>
+            <a   sec:authorize="hasAnyAuthority('Admin')" th:href="@{/add_users}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i>  Add User
+            </a>
+            <a  sec:authorize="hasAnyAuthority('Admin')" th:href="@{/list_users}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i>  View Users
+            </a>
+            <a  sec:authorize="hasAnyAuthority('Admin')" th:href="@{/Addorganisation}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i>  Add Organisation
+            </a>
+            <a  sec:authorize="hasAnyAuthority('Admin')" th:href="@{/Savedorganisation}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i>  View Organisation
+            </a>
+             <a th:action="@{/logout}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> Logout
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="fragments/jsScripts :: scripts"></div>
+</body>
+</html>

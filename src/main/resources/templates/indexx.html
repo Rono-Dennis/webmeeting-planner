@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://use.fontawesome.com/c0c323679c.js"></script>
+
+    <link rel="stylesheet" href="../static/css/stylee.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!--    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <!--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">-->
+
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>-->
+
+
+    <!--    <link rel="style" href="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js">-->
+
+    <!--DataTables Offline-->
+    <link rel="stylesheet" href="../static/css/extern/dataTables.bootstrap5.min.css">
+    <link  th:href="@{/css/extern/dataTables.bootstrap5.min.css}" th:rel="stylesheet">
+
+    <!--DataTables Offline-->
+    <!--    <link rel="stylesheet" href="../static/css/extern/dataTables.bootstrap5.min.css">-->
+
+<!--    countDown links-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
+    <link th:rel="stylesheet" th:href="@{/styles/custom.css} "/>
+
+    <nav th:replace="fragments/header :: nav"></nav>
+
+
+    <script src="js/main.js"></script>
+
+    <style>
+        :root{
+            --main-bg-color: #009d63;
+            --main-text-color:#009d63;
+            --second-text-color:#bbbec5;
+            --second-bg-color:#clefde;
+        }
+
+
+
+
+        .primary-text
+        {
+            color: var(--main-text-color);
+        }
+
+        .second-text
+        {
+            color: var( --second-text-color);
+        }
+
+        .primary-bg
+        {
+            background-color: var( --main-bg-color);
+
+        }
+        .secondary-bg
+        {
+            background-color: var( --second-bg-color);
+        }
+
+        .rounded-full
+        {
+            border-radius: 100%;
+
+        }
+
+        #wrapper
+        {
+            overflow-x: hidden;
+            background-image: linear-gradient(
+                    to right,
+                    #baf3d7,
+                    #c2f5de,
+                    #cbf7e4,
+                    #d4f8ea,
+                    #ddfaef
+            );
+        }
+
+        #sidebar-wrapper
+        {
+            min-height: 100vh;
+            margin-left: -15rem;
+            transition: margin 0.25s ease-out;
+        }
+
+        #sidebar-wrapper .sidebar-heading{
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+        }
+
+        #sidebar-wrapper .list-group
+        {
+            width: 15rem;
+        }
+
+        #page-content-wrapper
+        {
+            min-width: 100vw;
+        }
+
+        #wrapper.toggled #sidebar-wrapper
+        {
+            margin-left: 0;
+        }
+
+        #menu-toggle
+        {
+            cursor: pointer;
+        }
+
+        .list-group-item
+        {
+            border: none;
+            padding: 20px 30px;
+        }
+
+        .list-group-item-active
+        {
+            background-color: transparent;
+            color: var( --main-text-color);
+            font-weight: bold;
+            border: none;
+        }
+
+        @media(min-width: 768px){
+            #sidebar-wrapper{
+                margin-left:0;
+            }
+
+            #page-content-wrapper
+            {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper
+            {
+                margin-left: -15rem;
+            }
+        }
+
+
+        .clock ul {
+            /*width: 250px;*/
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .clock ul li {
+            display: inline;
+            font-size: 3em;
+            text-align: center;
+            font-family: "Arial", Helvetica, sans-serif;
+            text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff
+        }
+        #Date {
+            font-family: 'Arial', Helvetica, sans-serif;
+            font-size: 15px;
+            text-align: center;
+            text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
+            padding-top: 2px;
+        }
+
+        .Date {
+            font-family: 'Arial', Helvetica, sans-serif;
+            font-size: 26px;
+            text-align: center;
+            text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
+            padding-top: 12px;
+        }
+
+        #point {
+            position: relative;
+            -moz-animation: mymove 1s ease infinite;
+            -webkit-animation: mymove 1s ease infinite;
+            padding-left: 10px;
+            padding-right: 10px
+        }
+
+        .point {
+            position: relative;
+            -moz-animation: mymove 1s ease infinite;
+            -webkit-animation: mymove 1s ease infinite;
+            padding-left: 10px;
+            padding-right: 10px
+        }
+
+        #demo{
+            font-size: 26px;
+            text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff
+        }
+        #title
+        {
+            padding-bottom: 20px;
+        }
+        #title1
+        {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body style="background:#F2F0E6;">
+
+<div class="d-flex" id="wrapper">
+
+    <!---sidebar starts here-->
+    <div th:replace="fragments/adminSidebar :: div"></div>
+    <div th:replace="fragments/Sidebar :: div"></div>
+<!--<div class="top">-->
+<!--    <div class="d-flex" id="wrapper" style="background-color: #baf3d7">-->
+
+<!--        <div id="page-content-wrapper" style="margin-top:33%">-->
+
+
+    <div id="page-content-wrapper" style="padding: 45px;">
+
+        <div class="container-fluid p-4" >
+
+            <div class="card-deck mx-5">
+
+                <div class="col-6 mt-2">
+                    <div class="rounded bg-gradient text-black pearl shadow p-5 text-center mb-2">
+                        <p style="text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff; color:#03121a;" class="mb-0 font-weight-bold text-uppercase">Next Meeting Starts In</p>
+                        <div id="clock" class="countdown pt-4"></div>
+                    </div>
+                </div>
+
+                <div class="col-6 mt-2">
+                <div class="rounded bg-gradient text-black pearl shadow p-5 text-center mb-5">
+                   <p style="text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff; color:#03121a;" class="mb-0 font-weight-bold text-uppercase">Today's Date</p>
+                    <h5  id="Date" class="card-title"></h5>
+                    <span class="font-weight-bold" style="font-size:30px;" id="hours">%H</span><label>Hrs</label>
+                    <span class="font-weight-bold" style="font-size:30px;">:</span>
+                    <span class="font-weight-bold" style="font-size:30px;" id="min">%M</span><label>Mins</label>
+                    <span class="font-weight-bold" style="font-size:30px;">:</span>
+                    <span class="font-weight-bold" style="font-size:30px;" id="sec">%S</span><label>Secs</label>
+                </div>
+                </div>
+
+                </div>
+            </div>
+
+        <!--         /**  Section count In database  **/-->
+
+        <div class="container-fluid p-4 align-self-center" >
+            <div class="row g-3 my-2">
+
+                <div class="col-md-3">
+                    <div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <div>
+                                <a class="fs-2" style="font-size:26px; color:black; font-weight:bold" th:text="${userCount}" th:href="@{/list_users}"></a>
+                            </div>
+                            <div>
+                                <a  class="fs-2" th:href="@{/list_users}">Number Of Users</a>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <div>
+                                <a class="fs-2"  style="font-size:26px; color:black; font-weight:bold" th:text="${roomsCount}" th:href="@{/Saveroom}"></a>
+                            </div>
+                            <div>
+                                <a  class="fs-5" th:href="@{/Saveroom}">Number of Rooms</a>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <div>
+                                <a class="fs-2"  style="font-size:26px; color:black; font-weight:bold" th:text="${meetingCount}" th:href="@{/SaveMeeting}"></a>
+                            </div>
+                            <div>
+                                <a  class="fs-2" th:href="@{/SaveMeeting}">Number of Meetings</a>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <div>
+                                <a class="fs-2"  style="font-size:26px; color:black; font-weight:bold" th:text="${meetingCount}" th:href="@{/SaveMeeting}"></a>
+                            </div>
+                            <div>
+                                <a  class="fs-2" th:href="@{/SaveMeeting}">Past Meetings</a>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--         /**  Section count In database  **/-->
+
+<!--        Countdown html here-->
+
+<!--        ends here-->
+            <!-- ////////////////////////////////////////// content here-->
+
+
+            <div th:fragment="div" sec:authorize="isAuthenticated()"  class="container-fluid p-5" style="background: white;/*EFDECD*/
+/*ce7430*/   text-align: center; font-family: Arial; box-sizing: border-box;">
+                <h1>List of All meetings</h1>
+                <div class="table-responsive">
+                    <table id="users_list" class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>meeting_id</th>
+                            <th>Organisation</th>
+                            <th>capacity</th>
+                            <th>topic</th>
+                            <th>description</th>
+                            <th>resources</th>
+                            <th>eventPattern</th>
+                            <th>startDate</th>
+                            <th>startTime</th>
+<!--                            <th>endTime</th>-->
+
+                        </tr>
+                        <tbody>
+
+                        <tr th:each="meetingschedules:${listMeeting}">
+
+                            <td th:text="${meetingschedules.meeting_id}">meeting_id</td>
+                            <td th:text="${meetingschedules.organization.organisation_id}">Organisation</td>
+                            <td th:text="${meetingschedules.capacity}">capacity</td>
+                            <td th:text="${meetingschedules.topic}">topic</td>
+                            <td th:text="${meetingschedules.description}">description</td>
+                            <td th:text="${meetingschedules.resources}">resources</td>
+                            <td th:text="${meetingschedules.eventPattern}">eventPattern</td>
+                            <td th:text="${meetingschedules.startDate}">startDate</td>
+                            <td th:text="${meetingschedules.startTime}">startTime</td>
+<!--                            <td th:text="${meetingschedules.endTime}">endTime</td>-->
+
+
+                        </tr>
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+
+<!--            </div>-->
+
+            <!--          foot start-->
+            <!--            <div th:replace="fragments/foot :: div"></div>-->
+
+            <!--foot end-->
+<!--        </div>-->
+
+
+
+        <!-- Footer -->
+<!--        <footer th:replace="fragments/footer :: footer"></footer>-->
+
+
+        <div th:replace="fragments/jsScripts :: scripts"></div>
+
+</div>
+
+    </div>
+</div>
+
+<!--Countdown Scripts-->
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/jquery-countdown/jquery.countdown.min.js}"></script>
+
+<script th:inline="javascript">
+    let endDate = [[${#calendars.format(endDate,'yyyy/MM/dd HH:mm:ss')}]];
+    // ${#temporals.format(temporal, 'dd/MM/yyyy HH:mm')}
+    $('#clock').countdown(endDate).on('update.countdown', function (event) {
+        let $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%D</span> Days%!d'
+            + '<span class="h1 font-weight-bold">%H</span> Hrs'
+            + '<span class="h1 font-weight-bold">%M</span> Mins'
+            + '<span class="h1 font-weight-bold">%S</span> Secs'));
+
+    });
+
+    if (endDate < 0) {
+        $('#clock').on(function (event) {
+            let $this = $(this).html(event.strftime(''
+                + '<span class="h1 font-weight-bold">No Upcoming Meeting</span>'
+                ));
+
+        });
+        // document.getElementById("demo").innerHTML = "No Upcoming Meeting";
+    }
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="../static/js/extern/jquery.dataTables.min.js"></script>
+<script th:src="@{/js/extern/jquery.dataTables.min.js}"></script>
+<script src="../static/js/extern/dataTables.bootstrap5.min.js"></script>
+<script th:src="@{/js/extern/dataTables.bootstrap5.min.js}"></script>
+<script>
+    $(document).ready(function() {
+        $('#users_list').DataTable();
+    });
+</script>
+
+
+
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<script>
+
+
+
+    var el = document.getElementById("wrapper")
+    var toggleButton = document.getElementById("menu-toggle")
+
+    toggleButton.onclick = function ()
+    {
+        el.classList.toggle("toggle")
+    }
+
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/c0c323679c.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+// Making 2 variable month and day
+        var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+        var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+// make single object
+        var newDate = new Date();
+// make current time
+        newDate.setDate(newDate.getDate());
+// setting date and time
+        $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+        setInterval( function() {
+// Create a newDate() object and extract the seconds of the current time on the visitor's
+            var seconds = new Date().getSeconds();
+// Add a leading zero to seconds value
+            $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+        },1000);
+
+        setInterval( function() {
+// Create a newDate() object and extract the minutes of the current time on the visitor's
+            var minutes = new Date().getMinutes();
+// Add a leading zero to the minutes value
+            $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+        },1000);
+
+        setInterval( function() {
+// Create a newDate() object and extract the hours of the current time on the visitor's
+            var hours = new Date().getHours();
+// Add a leading zero to the hours value
+            $("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+        }, 1000);
+    });
+
+    /** Meeting countdown **/
+
+
+    let span = document.getElementById('span');
+
+    function time() {
+        let d = new Date();
+        let s = d.getSeconds();
+        let m = d.getMinutes();
+        let h = d.getHours();
+        span.textContent =
+            ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+    }
+
+    setInterval(time, 1000);
+
+
+    // Set the date we're counting down to
+
+    let countDownDate = new Date("12, 11, 2021 14:56").getTime();
+
+    // let dateComing = [${dates}];
+    // let countDownDate = new Date(dateComing).getTime();
+    // th:text="${dates}"
+
+    // Update the count down every 1 second
+    let x = setInterval(function() {
+
+        // Get today's date and time
+        let now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        let distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "No Upcoming Meeting";
+        }
+    }, 1000);
+
+    /** toggle **/
+
+    // let el = document.getElementById("wrapper")
+    // let toggleButton = document.getElementById("menu-toggle")
+    //
+    // toggleButton.onclick = function() {
+    //     el.classList.toggle("toggled")
+    // }
+
+    $('#menu-toggle').on('click', function () {
+        $('#navbarSupportedContentt').removeClass("collapse show");
+        $('#navbarSupportedContentt').addClass("collapse hidden");
+    });
+
+</script>
+
+
+</body>
+
+
+</html>

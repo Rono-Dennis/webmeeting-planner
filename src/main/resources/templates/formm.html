@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<form th:action="@{/SaveMeeting}" method="post" th:object="${meetingschedules}" style="display: block;">
+
+    <div class = 'col-sm-6'>
+        <label>Rooms:</label>
+        <select style=" width: 200px; height: 35px;" th:field="*{tracomRooms}" class="form-control" required>
+
+            <th:block th:each="room: ${listsrooms}">
+                <option style="height: 60px;" th:text="${room.Rooms}"  th:value="${room.room_id}"></option>
+            </th:block>
+        </select>
+
+        <div class="form-group">
+            <label>Topic:</label>
+            <input type="text" style="width: 200px;" class="form-control" id="topic" name="topic" placeholder="Enter Topic" th:field="*{topic}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Capacity:</label>
+            <input type="number" style="width: 200px;" class="form-control" onkeypress="return onlyNumberKey(event)" min="1" step="1" id="capacity" th:field="*{capacity}" placeholder="Enter Capacity" name="capacity" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Enter Description" name="capacity" rows="2" cols="30" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Resources:</label>
+            <textarea class="form-control"  id="resource" th:field="*{resources}"   placeholder="Enter Resources"  name="capacity" rows="2" cols="30" required></textarea>
+        </div>
+
+    </div>
+
+    <div class = 'col-sm-6'>
+
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="date" class = "form-control" id="startdate" th:field="*{startDate}" placeholder="Enter StartTime" required />
+
+        </div>
+
+        <div class="form-group">
+            <label>Topic:</label>
+            <input type="time" class="form-control" placeholder="Enter Time" name="startTime" required>
+        </div>
+
+        <div class="form-group">
+            <label>Topic:</label>
+            <input type="time" class="form-control" placeholder="Enter Time" name="endTime" required>
+        </div>
+
+        <div class=" form-group form-check-inline ">
+            <label>EventPattern:</label>
+            <input type="radio" class="form-check-input m-2" th:value="Once" name="eventPattern"/>Once
+            <input type="radio" class="form-check-input m-2" th:value="Repetitive" name="eventPattern"/>Twice
+        </div>
+    </div>
+    <!--                                        <input type="text" class="hidden" id="Once11">-->
+
+
+    <div class="form-group m-3">
+        <button type="submit" class="btn btn-primary">Schedule</button>
+    </div>
+
+</form>
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://use.fontawesome.com/c0c323679c.js"></script>
+
+    <link rel="stylesheet" href="css/stylee.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <nav th:replace="fragments/header :: nav"></nav>
+
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(function() {
+            $('#datetimepicker1').datetimepicker();
+        });
+        $(function() {
+            $('#datetimepicker2').datetimepicker();
+        });
+    </script>
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <style>
+        .container {
+            margin-top: -10px;
+            margin-left: 190px;
+            width: 60%;
+            margin-bottom: 20px;
+
+            /*display: inline-block;*/
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+            /*text-align: left;*/
+        }
+        .register{
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+            margin-top: 3%;
+            padding: 3%;
+        }
+        .register-left{
+            text-align: center;
+            color: #fff;
+            margin-top: 4%;
+        }
+        .register-left input{
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+        .register-right{
+            background: #f8f9fa;
+            border-top-left-radius: 10% 50%;
+            border-bottom-left-radius: 10% 50%;
+        }
+        .register-left img{
+            margin-top: 15%;
+            margin-bottom: 5%;
+            width: 25%;
+            -webkit-animation: mover 2s infinite  alternate;
+            animation: mover 1s infinite  alternate;
+        }
+        @-webkit-keyframes mover {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        @keyframes mover {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        .register-left p{
+            font-weight: lighter;
+            padding: 12%;
+            margin-top: -9%;
+        }
+        .register .register-form{
+            padding: 10%;
+            margin-top: 10%;
+        }
+        .btnRegister{
+            float: right;
+            margin-top: 10%;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            background: #0062cc;
+            color: #fff;
+            font-weight: 600;
+            width: 50%;
+            cursor: pointer;
+        }
+        .register .nav-tabs{
+            margin-top: 3%;
+            border: none;
+            background: #0062cc;
+            border-radius: 1.5rem;
+            width: 28%;
+            float: right;
+        }
+        .register .nav-tabs .nav-link{
+            padding: 2%;
+            height: 34px;
+            font-weight: 600;
+            color: #fff;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+        .register .nav-tabs .nav-link:hover{
+            border: none;
+        }
+        .register .nav-tabs .nav-link.active{
+            width: 100px;
+            color: #0062cc;
+            border: 2px solid #0062cc;
+            border-top-left-radius: 1.5rem;
+            border-bottom-left-radius: 1.5rem;
+        }
+        .register-heading{
+            text-align: center;
+            margin-top: 8%;
+            margin-bottom: -15%;
+            color: #495057;
+        }
+
+        .error {
+            color: #dc3545
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+
+
+<div class="top">
+    <div class="d-flex" id="wrapper" style="background-color: #baf3d7">
+
+        <!---sidebar starts here-->
+
+        <div th:replace="fragments/adminSidebar :: div"></div>
+        <div th:replace="fragments/Sidebar :: div"></div>
+        <!--sidebar ends here-->
+
+        <div id="page-content-wrapper" style="margin-top:3%">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <button class="navbar-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <!--				<i class="fas fa-align-left primary-text fs-4 me-3"></i>-->
+                    <!--				<span class="navbar-toggler-icon"></span>-->
+                    <!--				<i class="fas fa-align-left"></i>-->
+                    <span class="navbar-toggler-icon my-toggler"></span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <!--				<i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>-->
+                    <h2 class="fs-2 m-0">Dashboard</h2>
+                </div>
+
+            </nav>
+
+            <!--            edition starts here-->
+            <div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        <p>Login to access the Dashboard</p>
+                        <button style="background-color: #4cae4c; text-decoration: none; border: none;font-size: 12px; display: inline-block; padding:10px; margin: 4px 2px; cursor: pointer; border-radius: 10px;"><a class="nav-link mr-3" style=" color: white;" th:href="@{/register}" href="/login">Register</a></button>
+
+                        <!--                        <button style="background-color: #4cae4c; text-decoration: none; color: white; border: none;font-size: 16px; display: inline-block; padding:10px; margin: 4px 2px; cursor: pointer; border-radius: 12px;" onclick="document.location='signup_form.html'" >Register</button>-->
+                        <!--                        <input type="submit" name="" value="Login"/><br/>-->
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login</a>
+                            </li>
+                            <!--                            <li class="nav-item">-->
+                            <!--                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>-->
+                            <!--                            </li>-->
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row register-form">
+
+                                    <p th:if="${loginError}"  class="alert alert-danger" role="alert">Wrong user or password</p>
+                                    <form th:action="@{/perform-login}"  method="post"
+                                          style="display: block;">
+                                        <div>
+
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" th:id="email" name="email" th:name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Password:</label>
+
+                                                    <input type="password" class="form-control" name="password" th:name="password" th:id="password" placeholder="Password">
+
+                                                </div>
+
+                                                <div class="form-group m-3">
+                                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                                </div>
+                                            </div>
+                                     <div class="p-2">
+                                        <div class="h6"> Don't have an account?, <a href="/register">register!</a>  </div>
+                                          </div>
+
+                                            <div class="p-2">
+                                                <div class="h6">  Forgot password? <a href="/forgot_password">Reset Password!</a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--            edition ends here-->
+
+
+
+            <!--            card starts here-->
+<!--            <div style="display: flex;" th:replace="fragments/foot :: div"></div>-->
+            <!--card ends here-->
+
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+
+</body>
+</html>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

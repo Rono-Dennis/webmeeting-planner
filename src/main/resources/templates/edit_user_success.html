@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<nav th:replace="fragments/header :: nav">
+</nav>
+
+
+
+
+<div class="top">
+    <div class="d-flex" id="wrapper" style="background-color: #baf3d7">
+
+        <div class="bg-white"  style="background-color: #baf3d7; margin-top:3%">
+            <div class="collapse show" id="navbarSupportedContent" style="margin-left: 0;">
+                <!--		<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+<!--                sidebar starts here-->
+                <div th:replace="fragments/adminSidebar :: div"></div>
+                <div th:replace="fragments/Sidebar :: div"></div>
+        <!--sidebar ends here-->
+
+<!--///////////////////////////////// content starts here-->
+
+
+        <div class="container text-center">
+            <div>
+                <h1>Edit User</h1>
+                <form th:action="@{/process_register}" method="post"style="max-width: 600px; margin: 0 auto">
+<!--                      th:object="${user}"-->
+
+<!--                    <input type="hidden" th:field="*{id}">-->
+                    <div>
+                       You have successfully Edited new User! Proceed to ViewUsers?
+
+                        <div class="form-group m-3">
+                            <button type="submit" class="btn btn-primary">Proceed</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+<!--            ?///////////// ends here-->
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</div>
+</body>
+</html>

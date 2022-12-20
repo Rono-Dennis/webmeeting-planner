@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+	<nav th:replace="fragments/head :: head"></nav>
+
+	<script src="https://use.fontawesome.com/c0c323679c.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		  integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="stylesheet" href="/css/stylee.css">
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<style>
+
+.clock ul {
+/*width: 250px;*/
+margin: 0 auto;
+padding: 0;
+list-style: none;
+text-align: center;
+}
+
+.clock ul li {
+display: inline;
+font-size: 3em;
+text-align: center;
+font-family: "Arial", Helvetica, sans-serif;
+text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff
+}
+#Date { 
+font-family: 'Arial', Helvetica, sans-serif;
+font-size: 26px;
+text-align: center;
+text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
+padding-top: 12px;
+}
+
+ .Date {
+ font-family: 'Arial', Helvetica, sans-serif;
+ font-size: 26px;
+ text-align: center;
+ text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
+ padding-top: 12px;
+		}
+
+#point {
+position: relative;
+-moz-animation: mymove 1s ease infinite;
+-webkit-animation: mymove 1s ease infinite;
+padding-left: 10px;
+padding-right: 10px
+}
+
+.point {
+position: relative;
+-moz-animation: mymove 1s ease infinite;
+-webkit-animation: mymove 1s ease infinite;
+padding-left: 10px;
+padding-right: 10px
+}
+
+/* Animasi Detik Kedap - Kedip */
+@-webkit-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; } 
+}
+
+@-moz-keyframes mymove 
+{
+0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+50% {opacity:0; text-shadow:none; }
+100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; } 
+}
+	</style>
+</head>
+<body>
+
+<!--<p style="margin-left: 55%; font-size:26px;opacity:1.0; text-shadow:0 0 20px #00c6ff;">The Next meeting will be on:> <span id="demo" style="font-size:26px; color: #1befef; opacity:1.0; text-shadow:0 0 20px #00c6ff;"></span></p>-->
+
+
+<div th:replace="fragments/toggle :: div"></div>
+
+<div class="container-fluid p-4" >
+
+	<div class="card-deck mx-5">
+
+		<div class="card bg-dark text-white" style="width: 18rem; height: 15rem;">
+			<img src="..." class="card-img" alt="">
+			<div class="card-img-overlay">
+				<h5 class="card-title">Meeting details</h5>
+				<p class="card-text">Add Room, Topic, Start time/date and time/date.</p>
+				<a th:href="@{/meetingdetails}"><p class="card-text">Meeting Details</p></a>
+			</div>
+		</div>
+		<div class="card bg-dark text-white" style="width: 18rem; height: 15rem;">
+			<img src="..." class="card-img" alt="">
+			<div class="card-img-overlay">
+				<h5 class="card-title">View Saved Rooms</h5>
+				<p class="card-text">Add Room, Topic, Start time/date and time/date.</p>
+				<a th:href="@{/Saveroom}"><p class="card-text">View Saved Rooms</p></a>
+			</div>
+		</div>
+		<div class="card bg-dark text-white" style="width: 18rem; height: 15rem;">
+			<img src="..." class="card-img" alt="">
+			<div class="card-img-overlay clock" >
+				<h5 class="card-title Date" >The Next meeting will be on</h5>
+				<h5 id="demo" class="card-title Date" ></h5>
+<!--				<h6 class="card-title  " id="demo" style="font-size:26px; display: inline; text-align: center; color: #1befef; opacity:1.0; text-shadow:0 0 20px #00c6ff;"></h6>-->
+			</div>
+		</div>
+
+
+		                    <div class="card bg-dark text-white" style="width: 18rem; height: 15rem;">
+		                        <img src="..." class="card-img" alt="">
+		                        <div class="card-img-overlay clock">
+<!--									<div class="">-->
+									<h5  id="Date"class="card-title"></h5>
+										 <ul>
+											<li id="hours"></li>
+											<li id="point">:</li>
+											<li id="min"></li>
+											<li class="point">:</li>
+											<li id="sec"></li>
+										</ul>
+<!--									</div>-->
+								</div>
+		                    </div>
+
+	</div>
+</div>
+
+
+<div class="container-fluid p-4" >
+<div class="row g-3 my-2">
+	<div class="col-md-3">
+<div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+	<div>
+		<h3 class="fs-2">7</h3>
+		<p  class="fs-5">Meetings</p>
+	</div>
+<div>
+	<i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+</div>
+</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+			<div>
+				<h3 class="fs-2">7</h3>
+				<p  class="fs-5">Meetings</p>
+			</div>
+			<div>
+				<i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+			<div>
+				<h3 class="fs-2">7</h3>
+				<p  class="fs-5">Meetings</p>
+			</div>
+			<div>
+				<i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="9-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+			<div>
+				<h3 class="fs-2">7</h3>
+				<p  class="fs-5">Meetings</p>
+			</div>
+			<div>
+				<i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!--          foot start-->
+<!--<div th:replace="fragments/foot :: div"></div>-->
+
+<!--foot end-->
+</div>
+
+
+
+<!-- Footer -->
+<!--<footer th:replace="fragments/footer :: footer"></footer>-->
+
+
+<!--<div th:replace="fragments/jsScripts :: scripts"></div>-->
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/c0c323679c.js"></script>
+<script type="text/javascript">
+
+   /**	calender date **/
+
+$(document).ready(function() {
+// Making 2 variable month and day
+let monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+let dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+// make single object
+let newDate = new Date();
+// make current time
+newDate.setDate(newDate.getDate());
+// setting date and time
+$('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+setInterval( function() {
+// Create a newDate() object and extract the seconds of the current time on the visitor's
+let seconds = new Date().getSeconds();
+// Add a leading zero to seconds value
+$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+},1000);
+
+setInterval( function() {
+// Create a newDate() object and extract the minutes of the current time on the visitor's
+let minutes = new Date().getMinutes();
+// Add a leading zero to the minutes value
+$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+},1000);
+
+setInterval( function() {
+// Create a newDate() object and extract the hours of the current time on the visitor's
+let hours = new Date().getHours();
+// Add a leading zero to the hours value
+$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+}, 1000); 
+});
+
+
+/** Meeting countdown **/
+
+
+let span = document.getElementById('span');
+
+   function time() {
+	   let d = new Date();
+	   let s = d.getSeconds();
+	   let m = d.getMinutes();
+	   let h = d.getHours();
+	   span.textContent =
+			   ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+   }
+
+   setInterval(time, 1000);
+
+
+   // Set the date we're counting down to
+   let countDownDate = new Date("Dec 5, 2021 16:37:25").getTime();
+
+   // Update the count down every 1 second
+   let x = setInterval(function() {
+
+	   // Get today's date and time
+	   let now = new Date().getTime();
+
+	   // Find the distance between now and the count down date
+	   let distance = countDownDate - now;
+
+	   // Time calculations for days, hours, minutes and seconds
+	   let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	   let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	   let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	   let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	   // Output the result in an element with id="demo"
+	   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+			   + minutes + "m " + seconds + "s ";
+
+	   // If the count down is over, write some text
+	   if (distance < 0) {
+		   clearInterval(x);
+		   document.getElementById("demo").innerHTML = "EXPIRED";
+	   }
+   }, 1000);
+
+
+
+
+   let el = document.getElementById("wrapper")
+   let toggleButton = document.getElementById("menu-toggle")
+
+   toggleButton.onclick = function ()
+   {
+	   el.classList.toggle("toggle")
+   }
+
+</script>
+
+</body>
+</html>
+	 

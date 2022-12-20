@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:fragment="div" sec:authorize="!isAuthenticated()" class="bg-white"  style="background-color: #baf3d7; margin-top:3%">
+    <div class="collapse show" id="navbarSupportedContent" style="margin-left: 0;">
+        <!--		<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+            <i class="fas fa-user-secret me-2"></i>MeetingPlanner
+        </div>
+
+        <div   class="list-group list-group-flush my-3">
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active">
+                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+            </a>
+<!--            <a th:href="@{/meeting_form}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">-->
+<!--                <i class="fas fa-project-diagram me-2"></i> Add Meeting-->
+<!--            </a>-->
+<!--            <a th:href="@{/meetingdetails}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">-->
+<!--                <i class="fas fa-project-diagram me-2"></i> View Meetings-->
+<!--            </a>-->
+            <a  th:href="@{/Addroom}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> Add Rooms
+            </a>
+
+            <a th:href="@{/Saveroom}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> View saved rooms
+            </a>
+            <a  th:href="@{/add_user}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-project-diagram me-2"></i>  Add User
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="fragments/jsScripts :: scripts"></div>
+</body>
+</html>

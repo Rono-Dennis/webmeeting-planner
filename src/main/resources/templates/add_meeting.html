@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <!--    added-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://use.fontawesome.com/c0c323679c.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--    added-->
+    <title>Add Meeting</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+</head>
+
+<body>
+<div class="container text-center">
+    <h3>Create Meeting</h3>
+
+    <br />
+    <br />
+
+
+    <form th:action="@{/create_meeting}"
+          method="post"
+          onSubmit="if(!confirm('Do you want to Save Meeting?')){return false;}"
+          style="max-width: 600px; margin: 0 auto;"
+          th:object="${meetings}">
+        <div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Meeting Name:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control"
+                           th:field="*{meeting_name}" required/>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Meeting Description:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control"
+                           th:field="*{meeting_description}" required/></div>
+            </div>
+
+        </div>
+        <div>
+            <div class="form-group row">
+                <label for="date_picker" class="col-form-label col-4">Date</label>
+                <div class="col-8">
+                    <input id="date_picker" type="date" class="form-control" required
+                           th:field="*{meetingDate}">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-group row">
+                <label for="starttime" class="col-form-label col-4">Start Time
+                </label>
+                <div class="col-8">
+                    <input id="starttime"  type="time" class="form-control" required
+                           th:field="*{startTime}">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group row">
+                <label for="starttime" class="col-form-label col-4">End Time
+                </label>
+                <div class="col-8">
+                    <input id="endtime"  type="time" class="form-control" required
+                           th:field="*{endTime}">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Meeting Capacity:</label>
+                <div class="col-8">
+                    <input type="number" class="form-control"
+                           th:field="*{meeting_capacity}"
+                           required maxlength="20">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div>
+
+        </div>
+
+        <div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
